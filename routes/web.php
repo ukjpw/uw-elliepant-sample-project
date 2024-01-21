@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'gallery'])->middleware(['auth'])->name('product.gallery');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/product/create', [ProductController::class, 'create'])->middleware(['auth'])->name('product.create');
+Route::post('/product/store', [ProductController::class, 'store'])->middleware(['auth'])->name('product.store');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->middleware(['auth'])->name('product.edit');
+Route::put('/product/update/{id}', [ProductController::class, 'update'])->middleware(['auth'])->name('product.update');
+
+Route::get('/product/{id}', [ProductController::class, 'show'])->middleware(['auth'])->name('product.show');
+Route::get('/product/generatepdf/{id}', [ProductController::class, 'generatePDF'])->middleware(['auth'])->name('product.generatepdf');
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->middleware(['auth'])->name('product.destroy');
+
 
 require __DIR__.'/auth.php';
