@@ -11,7 +11,7 @@
         @yield('styles')
         
         <!-- Fonts -->
-        <link rel="stylesheet" href="/style.css" />
+        @vite('resources/css/app.css')
     </head>
     <body class="font-sans">
       @include('_includes/nav/topnav')
