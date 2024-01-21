@@ -1,15 +1,18 @@
 @extends('template')
 
 @section('content')
-
+<style>
+    
+</style>
 <h1 class="md:flex ml-4 mb-8 text-lg font-bold">Product Gallery</h1>
 <div class="md:flex ml-4 font-sans">
 
     @foreach ($products as $product)
 
-    <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 mr-8">
-        <img class="w-full" src="{{ asset("storage/$product->feature_image_url") }}" alt="Gallery Image for {{ $product->name}}">
-
+    <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 mr-8 object-contain overflow-hidden">
+        <div style="overflow:hidden;" class="max-h-44">
+            <img  style="object-fit:cover" class="w-full" src="{{ asset("storage/$product->gallery_image_url") }}" alt="Gallery Image for {{ $product->name}}">
+        </div>
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2">{{ $product->name}}</div>
           <p class="text-gray-700 text-base">
