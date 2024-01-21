@@ -27,6 +27,9 @@
           <p class="text-gray-700 text-base">
             Shipping Cost: &#36;{{ $product->shipping_cost}}
           </p>
+          <p class="text-gray-400 text-base">
+            [Created by: {{ $product->user->name}}]
+          </p>
         </div>
         <div class="px-6 pt-4 pb-2 mb-4">
             <form action="{{ route('product.destroy', $product->id) }}" method="POST">
